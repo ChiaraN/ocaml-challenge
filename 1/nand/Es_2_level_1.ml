@@ -13,10 +13,10 @@ let xor2 : bool -> bool -> bool =
 
 
 let xor3 : bool -> bool -> bool = 
-        fun b1 b2: bool->
-          match (b1,b2) with 
-          true,true -> false,
-          false,true ->true
-          true,false -> true
-          false,false -> true 
-
+      fun b1 b2: bool->
+        match (b1,b2) with 
+| (true,true) -> false
+| (false,true) ->true
+| (true,false) -> true
+| (false,false) -> true 
+      ;;
