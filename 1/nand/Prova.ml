@@ -113,7 +113,9 @@ minlist_opt [3;2;5;1;7;8];;
 (*split [(1,2);(2,3);(3,4)] = [1;2;3],[2;3;4]*)
 List.split;;
 
-let rec split
+let rec split   
+
+(*Da finire*)
 
 
 (*fold_left('a -> 'b -> ...) *)
