@@ -166,7 +166,7 @@ let rec split = function
 
 assert(split [(1,2);(2,3);(3,4)] = ([1;2;3],[2;3;4]));;
 
-(* PArtiamo da una coppia di liste, vogliamo una lista di coppie: *)
+(* Partiamo da una coppia di liste, vogliamo una lista di coppie: *)
 List.combine;;
 (*'a list -> 'b list -> ('a * 'b) list*)
 
