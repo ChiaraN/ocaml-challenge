@@ -1,0 +1,43 @@
+(* Clicker counter *)
+type state = int;;
+type label = S | P;;
+
+let step (l : label) (q : state) : state = match l with 
+    S -> q+1
+  | P when q>0 -> q-1
+  | _ -> failwith ("no transition");;
+
+0 |> step S |> step S |> step P;;
+
+let rec trace (ll : label list) (q : state) : state list = 
+  match ll with
+    [] -> [q]
+  | l::t -> try let q' = step l q in q :: (trace t q') 
+            with _ -> [q];;
+
+trace [S;S;P;S;S;S;P;P;P;P;P;P;P] 0;;
+
+type pexp = C of int |P of pexp * pexp;;
+let e0 = P(P(C 1, C 2), P(C 2, C 3));;
+
+let is_val = function
+    C _ -> true 
+  | _ -> false;;
+  
+is_val e0;;
+
+let rec step (e : pexp) : pexp = match e with
+    P(C n1, C n2) -> C (n1+n2)
+  | P(C n1,e2)    -> let e2' = step e2 in P(C n1,e2')
+  | P(e1,e2)      -> let e1' = step e1 in P(e1',e2)
+  | _ -> failwith ("no transitions");;  
+
+
+e0 |> step |> step |> step;;
+
+let rec trace e = 
+  try let e' = step e in e :: trace e'
+  with _ -> [e];;
+  
+trace e0;;
+  
